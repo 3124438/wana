@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>失敗こそが、最強の教師である。</title>
+    <style>
+        /* --- 真面目なブログのスタイル --- */
+        body {
+            font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; /* 意識高い明朝体 */
+            line-height: 2.0;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #fff;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        p {
+            margin-bottom: 20px;
+        }
+
+        /* --- ここから地獄の広告スタイル --- */
+        #ad-overlay {
+            display: none; /* 最初は隠しておく */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #ad-box {
+            position: relative;
+            width: 400px; /* 最初は普通のサイズ */
+            background: linear-gradient(45deg, #ff00ff, #00ffff); /* AIっぽいサイバーで安い色 */
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: 0 0 30px #ff00ff;
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        #ad-inner {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        /* AI画像を入れる場所（今はグレーの箱） */
+        #ai-girl-img {
+            width: 100%;
+            height: 250px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border: 2px solid #000;
+        }
+
+        h2.ad-title {
+            color: #d60000;
+            font-size: 1.8rem;
+            margin: 0 0 10px 0;
+            font-weight: 900;
+            text-shadow: 1px 1px 0 #ffeb3b;
+        }
+
+        /* どんどんデカくなるボタン */
+        #donate-btn {
+            background-color: #ff0066;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #b30047;
+            transition: transform 0.1s;
+        }
+
+        /* 逃げる×ボタン */
+        #close-btn {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            border: 2px solid white;
+            z-index: 10000; /* 最前面 */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Life Hacker High School</h1>
+    </header>
+
+    <div class="container">
+        <h2>失敗こそが、最強の教師である。</h2>
+        <p>多くの高校生は、テストの点数や部活の試合結果において「失敗」を過度に恐れているように見える。しかし、シリコンバレーの起業家たちは口を揃えてこう言う。「Fail Fast（早く失敗しろ）」と。</p>
+        <p>例えば、あのスティーブ・ジョブズも一度は自分の会社を追い出された経験がある。その時の絶望が、後のiPhoneを生み出す原動力となったのだ。</p>
+        <p>現代社会において、安定とは停滞を意味する。君たちが教室で学んでいる「正解のある問い」は、AIが台頭する未来では価値を失うだろう。</p>
+        <p>（……この文章を真剣に読んでいる君は素晴らしい。だが、インターネットには罠があることを学ぶのもまた勉強だ……）</p>
+        <p>真の成長とは、居心地の良い場所（コンフォートゾーン）を抜け出した先にある。今日、君が何か一つでも新しい挑戦をしたなら、それは成功への第一歩なのだ。</p>
+        <p>スクロールして、もっと深い知識を得よう。</p>
+        <p>人生は一度きりだ。無駄にしている時間はない。</p>
+        <p>失敗を恐れるな。恐れるべきは、挑戦しないことだ。</p>
+    </div>
+
+    <div id="ad-overlay">
+        <div id="ad-box">
+            <div id="close-btn">×</div>
+
+            <div id="ad-inner">
+                <h2 class="ad-title">💖運命の出会い💖</h2>
+                <div id="ai-girl-img">
+                    ここに<br>AI美女の画像を<br>入れる
+                </div>
+                <p style="font-weight:bold; color:#333;">
+                    私に寄付してくれませんか？<br>
+                    <span style="font-size:0.8rem; color:#666;">※あなたの全財産が送信されます</span>
+                </p>
+                <button id="donate-btn">はい、寄付します♡</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 設定：5秒〜10秒のランダムな時間
+        const minTime = 5000; // 5秒
+        const maxTime = 10000; // 10秒
+        const randomDelay = Math.floor(Math.random() * (maxTime - minTime + 1)) + minTime;
+
+        const overlay = document.getElementById('ad-overlay');
+        const closeBtn = document.getElementById('close-btn');
+        const donateBtn = document.getElementById('donate-btn');
+
+        // 時間が経ったら広告をドカンと表示
+        setTimeout(() => {
+            overlay.style.display = 'flex';
+        }, randomDelay);
+
+        // ×ボタンが逃げる＆YESボタンが巨大化する処理
+        let scale = 1.0; // ボタンの大きさ倍率
+
+        closeBtn.addEventListener('mouseover', moveButton); // パソコン用
+        closeBtn.addEventListener('click', moveButton);     // スマホ用
+
+        function moveButton() {
+            // 1. ×ボタンを瞬間移動させる
+            // 画面内のランダムな位置（ただし広告ボックスの近くになりすぎないように画面全体を使う）
+            const x = Math.random() * (window.innerWidth - 50);
+            const y = Math.random() * (window.innerHeight - 50);
+            
+            closeBtn.style.position = 'fixed'; // 広告枠から外れて画面全体を逃げ回る
+            closeBtn.style.left = x + 'px';
+            closeBtn.style.top = y + 'px';
+
+            // 2. YESボタンを巨大化させる
+            scale += 0.5; // 0.5倍ずつデカくなる
+            donateBtn.style.transform = `scale(${scale})`;
+
+            // 3. 煽りメッセージ（コンソールログに出る隠し要素）
+            console.log("逃げられないよ？");
+        }
+
+        // 観念して寄付ボタンを押した時
+        donateBtn.addEventListener('click', () => {
+            alert("寄付ありがとうございます！\n(嘘です。サイト作りの勉強に戻りましょう)");
+            location.reload();
+        });
+
+    </script>
+</body>
+</html>
