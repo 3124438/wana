@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>失敗こそが、最強の教師である。</title>
+    <title>失敗こそが、最強の教師である。｜Life Hacker High School</title>
     <style>
         /* --- 真面目なブログのスタイル --- */
         body {
@@ -23,16 +23,35 @@
         h1 {
             font-size: 1.5rem;
             margin: 0;
+            font-weight: bold;
+            letter-spacing: 0.1em;
         }
         .container {
             max-width: 800px;
             margin: 40px auto;
-            padding: 20px;
+            padding: 40px;
             background: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            box-shadow: 0 0 15px rgba(0,0,0,0.03);
+        }
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h3 {
+            margin-top: 40px;
+            font-size: 1.3rem;
+            border-left: 5px solid #333;
+            padding-left: 15px;
         }
         p {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            text-align: justify; /* 文字を両端揃えにして賢そうに見せる */
+        }
+        .highlight {
+            background: linear-gradient(transparent 60%, #ffff66 60%);
+            font-weight: bold;
         }
 
         /* --- ここから地獄の広告スタイル --- */
@@ -43,82 +62,96 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.85); /* ちょっと濃くした */
             z-index: 9999;
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(5px); /* 背景をぼかす */
         }
 
         #ad-box {
             position: relative;
-            width: 400px; /* 最初は普通のサイズ */
-            background: linear-gradient(45deg, #ff00ff, #00ffff); /* AIっぽいサイバーで安い色 */
-            padding: 5px;
-            border-radius: 10px;
-            box-shadow: 0 0 30px #ff00ff;
+            width: 400px;
+            background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+            padding: 8px;
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(255, 0, 255, 0.8);
             text-align: center;
             font-family: sans-serif;
+            animation: vibe 0.1s infinite alternate; /* 常にプルプル震える */
+        }
+
+        @keyframes vibe {
+            from { transform: rotate(-1deg); }
+            to { transform: rotate(1deg); }
         }
 
         #ad-inner {
             background: white;
-            padding: 20px;
-            border-radius: 5px;
+            padding: 25px;
+            border-radius: 10px;
+            border: 3px solid #ffff00;
         }
 
-        /* AI画像を入れる場所（今はグレーの箱） */
         #ai-girl-img {
             width: 100%;
             height: 250px;
-            background-color: #ddd;
+            background-color: #333;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #555;
+            color: #fff;
             font-weight: bold;
             margin-bottom: 15px;
             border: 2px solid #000;
+            background-size: cover;
+            background-position: center;
         }
 
         h2.ad-title {
-            color: #d60000;
-            font-size: 1.8rem;
-            margin: 0 0 10px 0;
+            color: #ff0000;
+            font-size: 2.2rem;
+            margin: 0 0 15px 0;
             font-weight: 900;
-            text-shadow: 1px 1px 0 #ffeb3b;
+            border: none;
+            text-shadow: 2px 2px 0 #ffff00;
+            line-height: 1.2;
         }
 
-        /* どんどんデカくなるボタン */
         #donate-btn {
-            background-color: #ff0066;
+            background: linear-gradient(to bottom, #ff3399, #cc0066);
             color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.5rem;
+            border: 3px solid #fff;
+            padding: 20px 40px;
+            font-size: 1.8rem;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 5px 0 #b30047;
+            box-shadow: 0 10px 0 #800040, 0 10px 20px rgba(0,0,0,0.5);
             transition: transform 0.1s;
+            display: block;
+            margin: 10px auto;
+            white-space: nowrap; /* 文字が折り返されないように */
         }
 
-        /* 逃げる×ボタン */
         #close-btn {
             position: absolute;
-            top: -15px;
-            right: -15px;
-            width: 40px;
-            height: 40px;
-            background-color: #333;
+            top: -20px;
+            right: -20px;
+            width: 50px;
+            height: 50px;
+            background-color: #000;
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            font-size: 1.5rem;
             font-weight: bold;
-            border: 2px solid white;
-            z-index: 10000; /* 最前面 */
+            border: 3px solid #fff;
+            z-index: 10000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
     </style>
 </head>
@@ -130,14 +163,29 @@
 
     <div class="container">
         <h2>失敗こそが、最強の教師である。</h2>
-        <p>多くの高校生は、テストの点数や部活の試合結果において「失敗」を過度に恐れているように見える。しかし、シリコンバレーの起業家たちは口を揃えてこう言う。「Fail Fast（早く失敗しろ）」と。</p>
-        <p>例えば、あのスティーブ・ジョブズも一度は自分の会社を追い出された経験がある。その時の絶望が、後のiPhoneを生み出す原動力となったのだ。</p>
-        <p>現代社会において、安定とは停滞を意味する。君たちが教室で学んでいる「正解のある問い」は、AIが台頭する未来では価値を失うだろう。</p>
+        
+        <p>多くの高校生は、テストの点数や部活の試合結果において「失敗」を過度に恐れているように見える。しかし、シリコンバレーの起業家たちは口を揃えてこう言う。<span class="highlight">「Fail Fast（早く失敗しろ）」</span>と。</p>
+
+        <h3>1. 成功の反対は失敗ではない</h3>
+        <p>エジソンは電球を発明するまでに1万回失敗したと言われている。記者が彼に「1万回も失敗して辛くないですか？」と聞いた時、彼はこう答えた。「私は失敗などしていない。うまくいかない方法を1万通り発見しただけだ」と。</p>
+        <p>つまり、失敗とは成功へのプロセスの一部であり、避けるべきものではないのだ。何もしないことこそが、最大のリスクである。</p>
+
+        <h3>2. 現代社会とAIの台頭</h3>
+        <p>例えば、あのスティーブ・ジョブズも一度は自分の会社を追い出された経験がある。その時の絶望が、後のiPhoneを生み出す原動力となったのだ。安定とは停滞を意味する。</p>
+        <p>君たちが教室で学んでいる「正解のある問い」は、AIが台頭する未来では価値を失うだろう。必要なのは、正解のない荒野を突き進む<span class="highlight">「圧倒的な行動力」</span>だ。</p>
+
         <p>（……この文章を真剣に読んでいる君は素晴らしい。だが、インターネットには罠があることを学ぶのもまた勉強だ……）</p>
+
+        <h3>3. コンフォートゾーンを抜け出せ</h3>
         <p>真の成長とは、居心地の良い場所（コンフォートゾーン）を抜け出した先にある。今日、君が何か一つでも新しい挑戦をしたなら、それは成功への第一歩なのだ。</p>
-        <p>スクロールして、もっと深い知識を得よう。</p>
-        <p>人生は一度きりだ。無駄にしている時間はない。</p>
-        <p>失敗を恐れるな。恐れるべきは、挑戦しないことだ。</p>
+        <p>「明日やろう」は馬鹿野郎だ。今すぐ行動を起こせる人間だけが、未来を掴み取ることができる。</p>
+        
+        <h3>最後に</h3>
+        <p>人生は一度きりだ。無駄にしている時間はない。スマートフォンを見ているだけの時間を減らし、自分自身の価値を高めるために時間を使おう。</p>
+        <p>失敗を恐れるな。恐れるべきは、挑戦しないことだ。さあ、顔を上げて、最初の一歩を踏み出そう。</p>
+        
+        <br><br><br><br>
+        <p style="font-size:0.8rem; color:#aaa; text-align:center;">© 2024 Life Hacker High School. All Rights Reserved.</p>
     </div>
 
     <div id="ad-overlay">
@@ -146,13 +194,16 @@
 
             <div id="ad-inner">
                 <h2 class="ad-title">💖運命の出会い💖</h2>
+                
                 <div id="ai-girl-img">
                     ここに<br>AI美女の画像を<br>入れる
                 </div>
-                <p style="font-weight:bold; color:#333;">
-                    私に寄付してくれませんか？<br>
-                    <span style="font-size:0.8rem; color:#666;">※あなたの全財産が送信されます</span>
+                
+                <p style="font-weight:bold; color:#333; font-size: 1.1rem;">
+                    この子に寄付してくれませんか？<br>
+                    <span style="font-size:0.8rem; color:#d60000;">※あなたの全財産が即座に送信されます</span>
                 </p>
+                
                 <button id="donate-btn">はい、寄付します♡</button>
             </div>
         </div>
@@ -160,41 +211,45 @@
 
     <script>
         // 設定：5秒〜10秒のランダムな時間
-        const minTime = 5000; // 5秒
-        const maxTime = 10000; // 10秒
+        const minTime = 5000;
+        const maxTime = 10000;
         const randomDelay = Math.floor(Math.random() * (maxTime - minTime + 1)) + minTime;
 
         const overlay = document.getElementById('ad-overlay');
         const closeBtn = document.getElementById('close-btn');
         const donateBtn = document.getElementById('donate-btn');
 
-        // 時間が経ったら広告をドカンと表示
+        // 時間が経ったら広告を表示
         setTimeout(() => {
             overlay.style.display = 'flex';
         }, randomDelay);
 
         // ×ボタンが逃げる＆YESボタンが巨大化する処理
-        let scale = 1.0; // ボタンの大きさ倍率
+        let scale = 1.0; 
 
-        closeBtn.addEventListener('mouseover', moveButton); // パソコン用
-        closeBtn.addEventListener('click', moveButton);     // スマホ用
+        // パソコン用とスマホ用両方に対応
+        ['mouseover', 'click', 'touchstart'].forEach(eventType => {
+            closeBtn.addEventListener(eventType, (e) => {
+                e.preventDefault(); // スマホでの誤作動防止
+                moveButton();
+            });
+        });
 
         function moveButton() {
             // 1. ×ボタンを瞬間移動させる
-            // 画面内のランダムな位置（ただし広告ボックスの近くになりすぎないように画面全体を使う）
-            const x = Math.random() * (window.innerWidth - 50);
-            const y = Math.random() * (window.innerHeight - 50);
+            const x = Math.random() * (window.innerWidth - 60);
+            const y = Math.random() * (window.innerHeight - 60);
             
-            closeBtn.style.position = 'fixed'; // 広告枠から外れて画面全体を逃げ回る
+            closeBtn.style.position = 'fixed'; 
             closeBtn.style.left = x + 'px';
             closeBtn.style.top = y + 'px';
 
             // 2. YESボタンを巨大化させる
-            scale += 0.5; // 0.5倍ずつデカくなる
+            scale += 0.4; // さっきより少しマイルドに大きくする（文章が長いので）
             donateBtn.style.transform = `scale(${scale})`;
-
-            // 3. 煽りメッセージ（コンソールログに出る隠し要素）
-            console.log("逃げられないよ？");
+            
+            // 3. 画面外にはみ出ないように中央寄せを維持
+            // (transformで大きくなると位置がずれることがあるので微調整はCSSでやってます)
         }
 
         // 観念して寄付ボタンを押した時
@@ -202,7 +257,6 @@
             alert("寄付ありがとうございます！\n(嘘です。サイト作りの勉強に戻りましょう)");
             location.reload();
         });
-
     </script>
 </body>
 </html>
