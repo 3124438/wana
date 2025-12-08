@@ -14,7 +14,7 @@
         h3 { margin-top: 40px; font-size: 1.3rem; border-left: 5px solid #333; padding-left: 15px; }
         .highlight { background: linear-gradient(transparent 60%, #ffff66 60%); font-weight: bold; }
 
-        /* --- 地獄の広告スタイル --- */
+        /* --- 地獄の広告スタイル (サイズ調整済み) --- */
         #ad-overlay {
             display: none;
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -23,25 +23,30 @@
             backdrop-filter: blur(5px);
         }
         #ad-box {
-            position: relative; /* これが基準になる */
-            width: 400px;
+            position: relative;
+            /* ★変更点：幅を小さくしました (400px -> 320px) ★ */
+            width: 320px;
             background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
-            padding: 8px; border-radius: 15px;
+            padding: 5px; border-radius: 15px;
             box-shadow: 0 0 50px rgba(255, 0, 255, 0.8);
             text-align: center; font-family: sans-serif;
             animation: vibe 0.1s infinite alternate;
         }
         @keyframes vibe { from { transform: rotate(-1deg); } to { transform: rotate(1deg); } }
-        #ad-inner { background: white; padding: 25px; border-radius: 10px; border: 3px solid #ffff00; }
-        #ai-girl-img-area { width: 100%; min-height: 250px; background: #000; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; border: 2px solid #000; overflow: hidden; }
+        /* ★変更点：中の余白も少し調整 ★ */
+        #ad-inner { background: white; padding: 15px; border-radius: 10px; border: 3px solid #ffff00; }
+        /* ★変更点：画像の高さも少し小さく調整 ★ */
+        #ai-girl-img-area { width: 100%; min-height: 200px; background: #000; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; border: 2px solid #000; overflow: hidden; }
         #ai-girl-img-area img { width: 100%; height: auto; display: block; }
         .alt-text { color: white; font-weight: bold; display: none; }
-        h2.ad-title { color: #ff0000; font-size: 2.2rem; margin: 0 0 15px 0; font-weight: 900; text-shadow: 2px 2px 0 #ffff00; line-height: 1.2; }
-        #donate-btn { background: linear-gradient(to bottom, #ff3399, #cc0066); color: white; border: 3px solid #fff; padding: 20px 40px; font-size: 1.8rem; font-weight: bold; border-radius: 50px; cursor: pointer; box-shadow: 0 10px 0 #800040; transition: transform 0.1s; display: block; margin: 10px auto; }
+        /* ★変更点：文字サイズを少し小さく調整 ★ */
+        h2.ad-title { color: #ff0000; font-size: 1.8rem; margin: 0 0 15px 0; font-weight: 900; text-shadow: 2px 2px 0 #ffff00; line-height: 1.2; }
+        /* ★変更点：ボタンサイズを少し小さく調整 ★ */
+        #donate-btn { background: linear-gradient(to bottom, #ff3399, #cc0066); color: white; border: 3px solid #fff; padding: 15px 30px; font-size: 1.5rem; font-weight: bold; border-radius: 50px; cursor: pointer; box-shadow: 0 10px 0 #800040; transition: transform 0.1s; display: block; margin: 10px auto; }
 
-        /* --- 逃げる×ボタンのスタイル（重要！）--- */
+        /* --- 逃げる×ボタンのスタイル --- */
         #close-btn {
-            position: absolute; /* 広告ボックスを基準に配置 */
+            position: absolute;
             top: -20px; right: -20px;
             width: 50px; height: 50px;
             background-color: #000; color: white; border-radius: 50%;
@@ -49,8 +54,8 @@
             font-size: 1.5rem; font-weight: bold; border: 3px solid #fff;
             z-index: 10000; cursor: pointer;
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            /* ここでヌルヌル動く設定をしている */
-            transition: all 0.3s ease-out; 
+            /* ★変更点：移動ではなく、大きさと透明度の変化を滑らかにする設定に変更 ★ */
+            transition: transform 0.2s, opacity 0.2s;
         }
     </style>
 </head>
@@ -78,7 +83,7 @@
                     <img src="girl.jpg" alt="" onerror="this.style.display='none'; document.querySelector('.alt-text').style.display='block';">
                     <div class="alt-text">ここにAI美女の<br>画像が出るよ</div>
                 </div>
-                <p style="font-weight:bold; color:#333; font-size: 1.1rem;">この子に寄付してくれませんか？<br><span style="font-size:0.8rem; color:#d60000;">※あなたの全財産が即座に送信されます</span></p>
+                <p style="font-weight:bold; color:#333; font-size: 1.0rem;">この子に寄付してくれませんか？<br><span style="font-size:0.7rem; color:#d60000;">※あなたの全財産が即座に送信されます</span></p>
                 <button id="donate-btn">はい、寄付します♡</button>
             </div>
         </div>
@@ -90,33 +95,39 @@
 
         const closeBtn = document.getElementById('close-btn');
         const donateBtn = document.getElementById('donate-btn');
-        const adBox = document.getElementById('ad-box');
+        
+        // ★変更点：YESボタンの大きさに加えて、×ボタンの大きさと透明度を管理する変数を追加
         let yesScale = 1.0;
+        let closeScale = 1.0;
+        let closeOpacity = 1.0;
 
-        // マウスが乗ろうとしたら逃げる処理
+        // マウスが乗ろうとしたら「小さくなって消える」処理
         ['mouseover', 'touchstart'].forEach(evt => {
             closeBtn.addEventListener(evt, (e) => {
                 e.preventDefault();
-                escapeButton();
+                shrinkCloseButton();
             });
         });
 
-        function escapeButton() {
-            // 広告ボックスの大きさを取得
-            const rect = adBox.getBoundingClientRect();
-            // 広告の周り（少しはみ出す範囲）でランダムな位置を決める
-            const offset = 80; // どれくらい外側まではみ出すか
-            
-            // 広告ボックスの左上を基準(0,0)とした座標を計算
-            const newLeft = Math.random() * (rect.width + offset * 2) - offset;
-            const newTop = Math.random() * (rect.height + offset * 2) - offset;
+        function shrinkCloseButton() {
+            // もう消えてたら何もしない
+            if (closeScale <= 0) return;
 
-            // 位置を更新（CSSのtransitionでヌルっと動く）
-            closeBtn.style.left = `${newLeft}px`;
-            closeBtn.style.top = `${newTop}px`;
+            // 1. ×ボタンを小さく、透明にする（20%ずつ減らす）
+            closeScale -= 0.2;
+            closeOpacity -= 0.2;
+
+            // 完全に消滅したかチェック
+            if (closeScale <= 0.1) {
+                 closeBtn.style.display = 'none'; // 完全に消す
+            } else {
+                 // スタイルを適用して小さく見せる
+                 closeBtn.style.transform = `scale(${closeScale})`;
+                 closeBtn.style.opacity = closeOpacity;
+            }
             
-            // YESボタンは相変わらず巨大化させる
-            yesScale += 0.3;
+            // 2. YESボタンは相変わらず巨大化させる
+            yesScale += 0.4;
             donateBtn.style.transform = `scale(${yesScale})`;
         }
 
